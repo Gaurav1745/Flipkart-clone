@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
     phone: {
         type: String
     }
-});
+} ,{ _id: false });
 
 const user = mongoose.model('user', userSchema);
 

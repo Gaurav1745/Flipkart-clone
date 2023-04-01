@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
-import autoIncrement from 'mongoose-auto-increment';
+import AutoIncrementFactory from 'mongoose-sequence';
+
+const AutoIncrement = AutoIncrementFactory(mongoose);
 
 const productSchema = new mongoose.Schema({
+    productId: { type: Number, unique: true },
     id: String,
     url: String,
     detailUrl: String,
@@ -12,9 +15,6 @@ const productSchema = new mongoose.Schema({
     discount: String,
     tagline: String
 });
-
-autoIncrement.initialize(mongoose.connection);
-productSchema.plugin(autoIncrement.plugin, 'product');
 
 const products = mongoose.model('product', productSchema);
 
